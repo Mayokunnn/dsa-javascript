@@ -7,10 +7,33 @@
 
 // Solution:
 
+// function secondMax (arr) {
+    
+//     const uniqueArray = Array.from(new Set(arr)).sort((a, b) => b - a);
+//     if(uniqueArray.length < 2)
+//         return -1;
+//     return uniqueArray[1];
+// }
+
+
+//OPTIMIZED
 function secondMax (arr) {
-    arr.sort((a, b) => b - a);
-    arr[0] !== arr[1] ? console.log(arr[1]) : console.log(arr[2]);
+    let largest = Number.NEGATIVE_INFINITY;
+    let secondLargest = Number.NEGATIVE_INFINITY;
+    
+    for(let i = 0; i < arr.length; i++) {
+        if(arr[i] > largest) {
+            secondLargest = largest;
+            largest = arr[i];
+        } else if(arr[i] > secondLargest && arr[i] < largest) {
+            secondLargest = arr[i];
+        }
+    }
+
+    return secondLargest;
 }
 
-secondMax([12, 35, 1, 10, 34, 1]);
+
+console.log(secondMax([12, 35, 1, 10, 34, 1]));
+
 
